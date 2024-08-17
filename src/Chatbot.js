@@ -1,4 +1,4 @@
-import { Link, Router, Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Chatbot() {
     return (

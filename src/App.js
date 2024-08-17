@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Chatbot from './Chatbot';
 import Homepage from './Homepage';
 import MindfulnessExercise from './MindfulnessExercise';
