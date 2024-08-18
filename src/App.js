@@ -9,7 +9,7 @@ function App() {
   const [message, setMessage] = useState(0);
 
   useEffect(() => {
-    fetch('/api/homepage').then(res => res.json()).then(data => {
+    fetch('https://hackvortex4-project.onrender.com/api/homepage').then(res => res.json()).then(data => {
       setMessage(data.message);
     });
   }, []);
