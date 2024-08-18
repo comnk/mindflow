@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Chatbot from './Chatbot';
 import Homepage from './Homepage';
@@ -6,14 +5,6 @@ import MindfulnessExercise from './MindfulnessExercise';
 import './App.css';
 
 function App() {
-  const [message, setMessage] = useState(0);
-
-  useEffect(() => {
-    fetch('https://hackvortex4-project.onrender.com/api/homepage').then(res => res.json()).then(data => {
-      setMessage(data.message);
-    });
-  }, []);
-
   return (
     <div className="App">
       <Router>
