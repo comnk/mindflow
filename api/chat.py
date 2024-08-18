@@ -15,6 +15,7 @@ def generate_response(user_input, messages):
     response = chat.choices[0].message.content
     return response
 
+# need to figure out when we break...maybe with timer or if user enters "exit"?
 
 def chatbot():
     messages = [{"role": "system", "content": "You are an intelligent assistant. You will provide the user a new random prompt to journal about, and then ask follow up questions as the user types out their responses."}]
@@ -26,8 +27,7 @@ def chatbot():
         elif user_input:
             chatbot_reply = generate_response(user_input, messages)
             print(f"ChatGPT: {chatbot_reply}")
-        messages.append({"role": "assistant", "content": chatbot_reply})
-        # need to figure out when we break...maybe with timer or if user enters "exit"?
+            messages.append({"role": "assistant", "content": chatbot_reply})
 
 if __name__ == "__main__":
     chatbot()
