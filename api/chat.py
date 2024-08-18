@@ -5,7 +5,6 @@ import os
 load_dotenv()
 
 OPENAI_KEY = os.getenv("OPENAI_KEY")
-print(f"OpenAI API Key: {OPENAI_KEY}")
 client = OpenAI(api_key=OPENAI_KEY)
 
 welcome_message = "Hey, there! I'm JotBot––your journaling buddy! Here is your prompt for today:\n\n"
