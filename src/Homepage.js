@@ -12,7 +12,7 @@ function Homepage() {
 
     return (
         <div className="App-header">
-          <h1>Our App LOL</h1>
+          <h1>MindFlow</h1>
           <div className='container'>
             <div className='buttons'>
                 <Link to="/chatbot">
@@ -20,9 +20,6 @@ function Homepage() {
                 </Link>
                 <Link to="/exercise">
                     <button>Exercises</button>
-                </Link>
-                <Link to="/game">
-                    <button>Games</button>
                 </Link>
           </div>
           

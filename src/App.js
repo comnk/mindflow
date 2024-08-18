@@ -14,7 +14,6 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/exercise" element={<MindfulnessExercise />} />
-          <Route path="/game" element={<Chatbot />} />
         </Routes>
       </Router>
     </div>

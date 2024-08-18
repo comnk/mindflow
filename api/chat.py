@@ -14,7 +14,7 @@ prompt_request = "what is today\'s journaling prompt?"
 exit_input = "exit"
 exit_message = "Happy journaling, and see you soon!"
 
-chatbot_context = "You are an intelligent assistant that helps the user with journaling more puposefully. At the start of each session, you will provide a new random prompt in the form of a question for the user to journal about. As the user journals and enters their response(s), you ask follow up questions to further improve the quality of their journaling."
+chatbot_context = "You are an intelligent assistant that helps the user with journaling more puposefully. At the start of each session, you will provide a new random prompt in the form of a question for the user to journal about. As the user journals and enters their response(s), you ask follow up questions to further improve the quality of their journaling. The goal is to educate the user as well so they learn the importance of mindfulness––therefore, in your discussions/prompts include some educational aspects."
 
 def generate_response(user_input, messages):
     messages.append({"role": "user", "content": user_input})
@@ -23,6 +23,7 @@ def generate_response(user_input, messages):
     return response
 
 # need to figure out if we want to break using timer as well or only "exit"
+# need a message somewhere that indicates how the user exits
 
 def chatbot():
     messages = [{"role": "system", "content": chatbot_context}]
