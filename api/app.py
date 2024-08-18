@@ -10,5 +10,6 @@ app.add_url_rule("/api/journal-chatbot/", view_func=chat.chatbot, methods=['get'
 
 @app.route("/api/homepage", methods=["GET"])
 @cross_origin()
+
 def homepage():
-    return {"message": "Hello World!"}
+    return {"message": "hello"}
