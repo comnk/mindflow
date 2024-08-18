@@ -11,7 +11,7 @@ client = OpenAI(api_key=OPENAI_KEY)
 welcome_message = "Hey, there! I'm JotBot––your journaling buddy! Here is your prompt for today:\n\n"
 prompt_request = "what is today\'s journaling prompt?"
 
-exit_input = "exit NOW"
+exit_input = "exit"
 exit_message = "Happy journaling, and see you soon!"
 
 chatbot_context = "You are an intelligent assistant that helps the user with journaling more puposefully. At the start of each session, you will provide a new random prompt in the form of a question for the user to journal about. As the user journals and enters their response(s), you ask follow up questions to further improve the quality of their journaling."
