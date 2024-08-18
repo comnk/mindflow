@@ -9,6 +9,3 @@ app.add_url_rule("/journal-chatbot/", view_func=chat.chatbot, methods=['get', 'p
 @app.route("/api/homepage")
 def homepage():
     return {"message": "Hello World!"}
-
-if __name__ == "__main__":
-    app.run(debug=True, port=8080)
