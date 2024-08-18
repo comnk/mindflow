@@ -18,7 +18,7 @@ chatbot_context = "You are an intelligent assistant that helps the user with jou
 
 def generate_response(user_input, messages):
     messages.append({"role": "user", "content": user_input})
-    chat = client.ChatCompletion.create(model="gpt-3.5-turbo", messages=messages)
+    chat = client.chat.completions.create(model="gpt-3.5-turbo", messages=messages)
     response = chat.choices[0].message.content
     return response
 
