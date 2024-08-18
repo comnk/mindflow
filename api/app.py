@@ -4,7 +4,7 @@ import chat
 
 app = Flask(__name__)
 
-app.add_url_rule("/journal-chatbot/", view_func=chat.chatbot, methods=['get', 'post'])
+app.add_url_rule("/api/journal-chatbot/", view_func=chat.chatbot, methods=['get', 'post'])
 
 @app.route("/api/homepage")
 def homepage():
