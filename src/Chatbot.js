@@ -25,18 +25,20 @@ function Chatbot() {
             <div id='chat-window' style={{border:'1px solid #ccc', padding:'10px', height:'300px', overflowY:'scroll', marginBottom:'10px'}}>
                 {messages.map((message, index) => (
                     <div key={index} style={{textAlign: message.sender === 'You' ? 'right' : 'left'}}>
-                        <p><strong>{msg.sender}:</strong> {msg.text}</p>
+                        <p><strong>{message.sender}:</strong> {message.text}</p>
                     </div>
                 ))}
             </div>
             <input
                 type="text"
                 value={user_input}
-                
+                onChange={(e) => add_input(e.target.value)}
+                placeholder='type to journal...'
+                style={{ width: '80%', padding: '10px', marginRight: '10px' }}
             />
+            <button onClick={send_input} style={{ padding: '10px 20px' }}>Send</button>
         </div>
-    )
-
+    );
 }
 
 export default Chatbot;
