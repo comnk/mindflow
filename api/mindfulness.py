@@ -28,7 +28,7 @@ def get_meditation_video(videoDuration):
         maxResults=10,
         q="guided meditation",
         type="video",
-        videoDuration="medium",
+        videoDuration=videoDuration,
         videoEmbeddable="true"
     )
 
