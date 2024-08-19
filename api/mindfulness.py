@@ -20,8 +20,7 @@ def get_level():
     else:
         duration="long"
 
-    #return {"url": get_meditation_video(videoDuration=duration)}
-    return {"message": "eeeeee"}
+    return {"url": get_meditation_video(videoDuration=duration)}
 
 def get_meditation_video(videoDuration):
     request = youtube.search().list(
