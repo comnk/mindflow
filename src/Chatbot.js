@@ -17,8 +17,26 @@ function Chatbot() {
             });
             const response_parse = await response.json();
             add_message([...new_message, {sender : 'JotBot', text : response_parse.message}])
-            add_input('');
+            add_input('')
     };}
+
+    return (
+        <div style={{padding:'20px', fontFamily:'Quesha, Avenir'}}>
+            <div id='chat-window' style={{border:'1px solid #ccc', padding:'10px', height:'300px', overflowY:'scroll', marginBottom:'10px'}}>
+                {messages.map((message, index) => (
+                    <div key={index} style={{textAlign: message.sender === 'You' ? 'right' : 'left'}}>
+                        <p><strong>{msg.sender}:</strong> {msg.text}</p>
+                    </div>
+                ))}
+            </div>
+            <input
+                type="text"
+                value={user_input}
+                
+            />
+        </div>
+    )
+
 }
 
 export default Chatbot;
