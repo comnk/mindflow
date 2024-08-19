@@ -6,7 +6,7 @@ function MindfulnessOption() {
     const [myVariable, setMyVariable] = useContext(MyContext);
 
     const handleOutput = async (e) => {
-        const response = await fetch('http://localhost:5000/api/mindfulness-level/', {
+        const response = await fetch('https://hackvortex4-project.onrender.com/api/mindfulness-level/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ level: e.target.value }),

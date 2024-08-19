@@ -8,7 +8,7 @@ function Homepage() {
     useEffect(() => {
         const fetchQuote = async () => {
           try {
-            const response = await fetch("https://zenquotes.io/api/today");
+            const response = await fetch("https://hackvortex4-project.onrender.com/api/quote");
             const data = await response.json();
 
             if (data && data.length > 0) {
