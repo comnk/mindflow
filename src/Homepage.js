@@ -2,12 +2,26 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function Homepage() {
-    const [message, setMessage] = useState(0);
+    const [quote, setQuote] = useState("");
+    const [author, setAuthor] = useState("");
 
     useEffect(() => {
-        fetch('https://hackvortex4-project.onrender.com/api/homepage').then(res => res.json()).then(data => {
-        setMessage(data.message);
-        });
+        const fetchQuote = async () => {
+          try {
+            const response = await fetch("https://zenquotes.io/api/random");
+            const data = await response.json();
+
+            if (data && data.length > 0) {
+              setQuote(data[0].q);
+              setAuthor(data[0].a);
+            }
+          } catch (error) {
+            console.log("Error fetching quote");
+          }
+        };
+
+        fetchQuote();
+        
     }, []);
 
     return (
@@ -16,6 +30,7 @@ function Homepage() {
                 <h1>MindFlow</h1>
           </Link>
           <div className='container'>
+            <p>"{quote}" - {author}</p>
             <div className='buttons'>
                 <Link to="/chatbot">
                     <button>Chatbot</button>
@@ -23,9 +38,7 @@ function Homepage() {
                 <Link to="/option">
                     <button>Exercises</button>
                 </Link>
-          </div>
-          
-            <p>{message}</p>
+            </div>
           </div>
         </div>
       );
