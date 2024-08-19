@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect} from 'react';
+import { useState, useEffect, useContext} from 'react';
+import { MyContext } from './MyContext';
 
 function MindfulnessExercise() {
    {/*} const [videoLink, setVideoLink] = useState("");
@@ -9,6 +10,10 @@ function MindfulnessExercise() {
             setVideoLink(data.video_url);
         })
     })*/}
+
+    const { myVariable } = useContext(MyContext);
+    
+    console.log(myVariable);
 
     return (
         <div className="App-header">
