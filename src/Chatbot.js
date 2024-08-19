@@ -1,4 +1,4 @@
-import { json, Link } from 'react-router-dom';
+// import { json, Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
@@ -8,22 +8,25 @@ function Chatbot() {
     const [user_input, add_input] = useState('');
     
     const send_input = async () => {
+        console.log('Sending input...');
         if (user_input.trim()) {
-            const new_message = [... messages, {sender : 'You', text : user_input}];
+            const new_message = [...messages, {sender : 'You', text : user_input}];
             add_message(new_message)
 
-            const response = await fetch ('http://localhost:5000/api/journal-chatbot/', {
+            const response = await fetch ('http://127.0.0.1:8080/api/journal-chatbot/', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({user_input_jstr: user_input})
             });
             const response_parse = await response.json();
             add_message([...new_message, {sender : 'JotBot', text : response_parse.message}])
-            add_input('')
+            add_input('');
+            console.log('Input cleared');
     };}
 
     return (
         <div style={{
+            // all elems on page
             display: 'flex', 
             justifyContent: 'center', 
             alignItems: 'center', 
@@ -32,24 +35,27 @@ function Chatbot() {
             fontFamily: 'Avenir',
         }}>
             <div style={{
+                // all elems within this wrapper...
                 display: 'flex',
                 flexDirection: 'column',
-                width: '40%',
-                height: '70vh',
+                width: '60%',
+                height: '100vh',
                 justifyContent: 'space-between',
             }}>
                 <div id='chat-window' style={{
+                    // chat window
                     border: '1px solid #ccc',
                     padding: '20px',
                     height: '80%',
                     overflowY: 'scroll',
                     boxSizing: 'border-box',
-                    marginBottom: '10px',
+                    marginBottom: '20',
                     borderRadius: '20px',
                 }}>
                     {messages.map((message, index) => (
                         <div key={index} style={{ textAlign: message.sender === 'You' ? 'right' : 'left' }}>
-                            <p><strong>{message.sender}:</strong> {message.text}</p>
+                            <p><strong>{message.sender}:
+                            <br /></strong> {message.text}</p>
                         </div>
                     ))}
                 </div>
@@ -61,20 +67,32 @@ function Chatbot() {
                         onKeyDown={(e) => {
                             if (e.key === 'Enter' && user_input.trim()) {
                                 send_input();
+                                add_input('');
                             }
                         }}
+                        // typing bar
                         placeholder='type to journal...'
                         style={{
                             flex: '1',
                             padding: '10px',
                             marginRight: '10px',
+                            marginTop: '-200px',
                             borderRadius: '10px',
                          }}
                     />
                     <button 
-                        onClick={send_input} 
+                    // send button
+                    onClick={() => {
+                        send_input();
+                        add_input('');
+                        }}
                         disabled={!user_input.trim()}
-                        style={{ padding: '10px 20px', borderRadius: '10px', backgroundColor: 'white', border: '1px', borderRadius: '10px', }}>
+                        style={{ 
+                            padding: '10px 50px',
+                            marginTop: '-200px',
+                            borderRadius: '10px',
+                            backgroundColor: 'white',
+                            border: '1px'}}>
                         <FontAwesomeIcon icon={faPaperPlane} size="lg" />
                     </button>
                 </div>

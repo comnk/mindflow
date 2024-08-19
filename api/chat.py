@@ -7,7 +7,7 @@ load_dotenv()
 OPENAI_KEY = os.getenv("OPENAI_KEY")
 client = OpenAI(api_key=OPENAI_KEY)
 
-welcome_message = "Hey, there! I'm JotBot––your journaling buddy! Here is your prompt for today:\n\n"
+welcome_message = "Hey, there! I'm JotBot––your journaling buddy!\n\n"
 prompt_request = "what is today\'s journaling prompt?"
 
 exit_input = "exit"
@@ -27,7 +27,7 @@ def generate_response(user_input, messages):
 def chatbot():
     messages = [{"role": "system", "content": chatbot_context}]
     prompt = generate_response(prompt_request, messages)
-    print(f"JotBot: {welcome_message}{prompt}")
+    print(f"JotBot: {welcome_message}{prompt}\n")
 
     while True:
         user_input = input("User : ")
@@ -35,7 +35,7 @@ def chatbot():
             return exit_message
         elif user_input:
             chatbot_reply = generate_response(user_input, messages)
-            print(f"JotBot: {chatbot_reply}")
+            print(f"\nJotBot: {chatbot_reply}\n")
             messages.append({"role": "assistant", "content": chatbot_reply})
 
 if __name__ == "__main__":
