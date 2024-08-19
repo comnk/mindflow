@@ -22,7 +22,7 @@ def get_meditation_video():
     
     if response["items"]:
         random_video = random.choice(response["items"])
-        video_url = f"https://www.youtube.com/watch?v={random_video['id']['videoId']}"
+        video_url = f"https://www.youtube.com/embed/{random_video['id']['videoId']}"
         return {"video_url": video_url}
     else:
         return {"video_url": "No video found"}
