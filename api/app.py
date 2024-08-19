@@ -16,12 +16,9 @@ app.add_url_rule("/api/mindfulness-video/",view_func=mindfulness.get_meditation_
 @cross_origin()
 def get_quote():
     try:
-        response = requests.get("https://zenquotes.io/api/random")
+        response = requests.get("https://zenquotes.io/api/today")
         response.raise_for_status()
         data = response.json()
         return jsonify(data)
     except requests.RequestException as e:
         return jsonify({'error': str(e)}), 500
-
-if __name__ == '__main__':
-    app.run(debug=True)
