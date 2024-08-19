@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from "react";
 import Chatbot from './Chatbot';
 import Homepage from './Homepage';
+import MindfulnessOption from './MindfulnessOption';
 import MindfulnessExercise from './MindfulnessExercise';
 import './App.css';
 
@@ -13,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/chatbot" element={<Chatbot />} />
+          <Route path="/option" element={<MindfulnessOption />} />
           <Route path="/exercise" element={<MindfulnessExercise />} />
         </Routes>
       </Router>
