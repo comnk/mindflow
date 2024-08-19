@@ -12,13 +12,15 @@ function Homepage() {
 
     return (
         <div className="App-header">
-          <h1>MindFlow</h1>
+          <Link to="/" className="title">
+                <h1>MindFlow</h1>
+          </Link>
           <div className='container'>
             <div className='buttons'>
                 <Link to="/chatbot">
                     <button>Chatbot</button>
                 </Link>
-                <Link to="/exercise">
+                <Link to="/option">
                     <button>Exercises</button>
                 </Link>
           </div>
