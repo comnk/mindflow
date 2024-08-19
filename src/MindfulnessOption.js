@@ -35,9 +35,6 @@ function MindfulnessOption() {
                         <button value="advanced" onClick={e => handleOutput(e, "value")}>Advanced</button>
                     </Link>
                 </div>
-                {/*<div className="containers">
-                    <iframe width="600" height="480" src={videoLink}/>
-                </div>*/}
             </div>
         </div>
     );
