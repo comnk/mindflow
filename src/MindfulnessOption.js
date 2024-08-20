@@ -5,9 +5,9 @@ import Navbar from './components/Nav/Navbar';
 import './MindfulnessOption.css'
 
 const options = {
-    "beginner": "This is for users who are getting started with meditation",
-    "moderate": "This is for users who did meditation before and want to take things up a new level",
-    "advanced": "This is for users who meditate regularly and want longer sessions"
+    "beginner": "For users who are starting with meditation",
+    "moderate": "For users who want to take things up a level",
+    "advanced": "For users who meditate regularly and want longer sessions"
 }
 
 function MindfulnessOption() {
