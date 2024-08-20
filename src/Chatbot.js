@@ -62,6 +62,7 @@ function Chatbot() {
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <input
                             type="text"
+                            id="journal-entry"
                             value={user_input}
                             onChange={(e) => add_input(e.target.value)}
                             onKeyDown={(e) => {
