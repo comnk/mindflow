@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useContext} from 'react';
 import { MyContext } from './MyContext';
+import './MindfulnessExercise.css'
 
 function MindfulnessExercise() {
     const [ myVariable ] = useContext(MyContext);
@@ -16,7 +17,7 @@ function MindfulnessExercise() {
              </Link>
             <div className="container">
                 <div className="video-container">
-                    <iframe title="meditation-video" width="600" height="480" src={myVariable.video_url}/>
+                    <iframe title="meditation-video" width="600" height="480"  src={myVariable.video_url}/>  
                 </div>
                 <Link to="/option" className='buttons'>
                     <button>Go Back</button>
