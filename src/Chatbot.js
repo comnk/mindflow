@@ -50,7 +50,8 @@ function Chatbot() {
                         boxSizing: 'border-box',
                         marginBottom: '10px',
                         borderRadius: '20px',
-                        backgroundColor: 'white'
+                        backgroundColor: 'white',
+                        color: 'black'
                     }}>
                         {messages.map((message, index) => (
                             <div key={index} style={{ textAlign: message.sender === 'You' ? 'right' : 'left' }}>
