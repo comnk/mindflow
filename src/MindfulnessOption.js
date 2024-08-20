@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { MyContext } from './MyContext';
+import Navbar from './components/Nav/Navbar';
+import './MindfulnessOption.css'
 
 const options = {
     "beginner": "This is for users who are getting started with meditation",
@@ -25,11 +27,13 @@ function MindfulnessOption() {
 
     return (
         <div className="App-header">
-            <Link to="/" className="title">
-                <h1>MindFlow</h1>
-            </Link>
+            <Navbar />
             <div className="container">
-                <p>{explanation}</p>
+                <div className='content'>
+                <Link to="/" className="title">
+                    <h1>MindFlow</h1>
+                </Link>
+                <p className='option'>{explanation}</p>
                 <div className="buttons">
                     <Link to="/exercise">
                         <button value="beginner"
@@ -52,6 +56,7 @@ function MindfulnessOption() {
                         onMouseLeave={() => setExplanation("Mindfulness Exercises!")}
                         >Advanced</button>
                     </Link>
+                </div>
                 </div>
             </div>
         </div>

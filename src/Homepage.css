@@ -1,0 +1,53 @@
+.App-header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: block;
+  background-image: url("./components/images/bg.jpg"); 
+  background-color: #cccccc; 
+  height: 100vh; 
+  background-position: center;
+  background-repeat: no-repeat; 
+  background-size: cover;
+}
+
+.container-box {
+  margin: 5rem 0;
+}
+
+
+#quote-box {
+    width: 800px;
+    margin: 0 auto;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+    text-align: left;
+    background-color: #d2e6e4;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(71, 71, 71, 0.3);
+  }
+  
+  .quote-content {
+    height: 200px;
+    margin: 1em 2em;
+  }
+  
+  #author {
+    text-align: right;
+    margin-top: -1em;
+  }
+
+  .btn-box {
+    margin: 3em 0;
+  }
+
+
+  @media screen and (max-width:940px) {
+    #quote-box {
+      width: 80vw;
+    }
+  }
