@@ -1,9 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { MyContext } from './MyContext';
 
+const options = {
+    "beginner": "This is for users who are getting started with meditation",
+    "moderate": "This is for users who have done meditation before and want to take things up a new level",
+    "advanced": "This is for users who meditate regularly and want longer sessions"
+}
+
 function MindfulnessOption() {
     const [myVariable, setMyVariable] = useContext(MyContext);
+    const [explanation, setExplanation] = useState("Mindfulness Exercises!")
 
     const handleOutput = async (e) => {
         const response = await fetch('https://hackvortex4-project.onrender.com/api/mindfulness-level/', {
@@ -22,16 +29,28 @@ function MindfulnessOption() {
                 <h1>MindFlow</h1>
             </Link>
             <div className="container">
-                <p>Mindfulness Exercises!</p>
+                <p>{explanation}</p>
                 <div className="buttons">
                     <Link to="/exercise">
-                        <button value="beginner" onClick={handleOutput}>Beginner</button>
+                        <button value="beginner"
+                        onClick={handleOutput}
+                        onMouseEnter={() => setExplanation(options["beginner"])}
+                        onMouseLeave={() => setExplanation("Mindfulness Exercises!")}
+                        >Beginner</button>
                     </Link>
                     <Link to="/exercise">
-                        <button value="moderate" onClick={handleOutput}>Moderate</button>
+                        <button value="moderate"
+                        onClick={handleOutput}
+                        onMouseEnter={() => setExplanation(options["moderate"])}
+                        onMouseLeave={() => setExplanation("Mindfulness Exercises!")}
+                        >Moderate</button>
                     </Link>
                     <Link to="/exercise">
-                        <button value="advanced" onClick={handleOutput}>Advanced</button>
+                        <button value="advanced"
+                        onClick={handleOutput}
+                        onMouseEnter={() => setExplanation(options["advanced"])}
+                        onMouseLeave={() => setExplanation("Mindfulness Exercises!")}
+                        >Advanced</button>
                     </Link>
                 </div>
             </div>

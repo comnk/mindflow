@@ -14,9 +14,11 @@ function MindfulnessExercise() {
             <Link to="/" className="title">
                 <h1>MindFlow</h1>
              </Link>
-            <p>Hello World!</p>
             <div className="containers">
                     <iframe title="meditation-video" width="600" height="480" src={myVariable.video_url}/>
+                    <Link to="/option" className='buttons'>
+                        <button>Go Back</button>
+                    </Link>
             </div>
         </div>
     );
