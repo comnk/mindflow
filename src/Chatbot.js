@@ -67,6 +67,7 @@ function Chatbot() {
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter' && user_input.trim()) {
                                     send_input();
+                                    add_input('');
                                 }
                             }}
                             placeholder='type to journal...'
@@ -78,7 +79,10 @@ function Chatbot() {
                             }}
                         />
                         <button 
-                            onClick={send_input} 
+                            onClick={() => {
+                                send_input();
+                                add_input('');
+                            }} 
                             disabled={!user_input.trim()}
                             style={{ padding: '10px 20px', borderRadius: '10px', backgroundColor: 'white', border: '1px', borderRadius: '10px', }}>
                             <FontAwesomeIcon icon={faPaperPlane} size="lg" />
