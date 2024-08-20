@@ -14,7 +14,7 @@ function Chatbot() {
             const new_message = [...messages, {sender : 'You', text : user_input}];
             add_message(new_message)
 
-            const response = await fetch('http://127.0.0.1:5000/api/journal-chatbot/', {
+            const response = await fetch('https://hackvortex4-project.onrender.com/api/journal-chatbot/', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({user_input_jstr: user_input})

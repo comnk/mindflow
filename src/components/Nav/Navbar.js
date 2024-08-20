@@ -14,8 +14,8 @@ const Navbar = () => {
     return (
         <div className='header'>
             <nav className='navbar'>
+                {/*<img src={logo} alt='logo' height={90}/> */}
                 <a href='/' className='logo'>
-                    {/* <img src={logo} alt='logo' /> */}
                     <p><span className='m'>M</span>ind<span className='m'>F</span>low<span className='m'>.</span></p>
                 </a>
                 <div className='hamburger' onClick={handleClick}>
