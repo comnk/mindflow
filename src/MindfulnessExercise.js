@@ -12,7 +12,7 @@ function MindfulnessExercise() {
     return (
         <div className="App-header">
             <Link to="/" className="title">
-                <h1>MindFlow</h1>
+                <h1 style={{ color: '#0b7077' }}>MindFlow</h1>
              </Link>
             <div className="container">
                 <div className="video-container">

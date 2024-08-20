@@ -2,6 +2,7 @@ import { json, Link } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import Navbar from './components/Nav/Navbar';
 
 function Chatbot() {
     const [messages, add_message] = useState([]);
@@ -32,6 +33,7 @@ function Chatbot() {
 
     return (
         <div>
+            <Navbar />
             <Link to="/" className="title">
                 <h1>MindFlow</h1>
             </Link>
