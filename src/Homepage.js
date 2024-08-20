@@ -52,10 +52,10 @@ function Homepage() {
             </p> */}
             <div className='buttons btn-box'>
                 <Link to="/chatbot">
-                    <button>Chatbot</button>
+                    <button>Journaling</button>
                 </Link>
                 <Link to="/option">
-                    <button>Exercises</button>
+                    <button>Mindfulness</button>
                 </Link>
             </div>
           </div>

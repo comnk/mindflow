@@ -28,10 +28,10 @@ const Navbar = () => {
                         <a href='/' onClick={closeMenu}>Home</a>
                     </li>
                     <li className='nav-item'>
-                        <a href='/chatbot' onClick={closeMenu}>Chatbot</a>
+                        <a href='/chatbot' onClick={closeMenu}>Journaling</a>
                     </li>
                     <li className='nav-item'>
-                        <a href='/option' onClick={closeMenu}>Exercises</a>
+                        <a href='/option' onClick={closeMenu}>Mindfulness</a>
                     </li>
                 </ul>
             </nav>
