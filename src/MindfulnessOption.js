@@ -6,7 +6,7 @@ import './MindfulnessOption.css'
 
 const options = {
     "beginner": "This is for users who are getting started with meditation",
-    "moderate": "This is for users who have done meditation before and want to take things up a new level",
+    "moderate": "This is for users who did meditation before and want to take things up a new level",
     "advanced": "This is for users who meditate regularly and want longer sessions"
 }
 
