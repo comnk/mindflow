@@ -17,6 +17,10 @@
 
   .container {
     text-align: center;
+
+    .video-container {
+      padding-bottom: 1.5%;
+    }
   }
 
   .buttons {
