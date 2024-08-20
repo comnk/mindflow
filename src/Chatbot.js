@@ -1,26 +1,35 @@
 import { json, Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 function Chatbot() {
     const [messages, add_message] = useState([]);
     const [user_input, add_input] = useState('');
-    
+    const chatWindowRef = useRef(null);
+
     const send_input = async () => {
         if (user_input.trim()) {
-            const new_message = [... messages, {sender : 'You', text : user_input}];
-            add_message(new_message)
+            const new_message = [...messages, { sender: 'You', text: user_input }];
+            add_message(new_message);
 
-            const response = await fetch ('http://127.0.0.1:5000/api/journal-chatbot/', {
+            const response = await fetch('http://127.0.0.1:5000/api/journal-chatbot/', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({user_input_jstr: user_input})
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_input_jstr: user_input })
             });
             const response_parse = await response.json();
-            add_message([...new_message, {sender : 'JotBot', text : response_parse.message}])
-            add_input('')
-    };}
+            add_message([...new_message, { sender: 'JotBot', text: response_parse.message }]);
+            add_input('');
+        }
+    };
+
+    // auto-scroll
+    useEffect(() => {
+        if (chatWindowRef.current) {
+            chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
+        }
+    }, [messages]);
 
     return (
         <div>
@@ -28,31 +37,34 @@ function Chatbot() {
                 <h1>MindFlow</h1>
             </Link>
             <div style={{
-            display: 'flex', 
-            justifyContent: 'center', 
-            alignItems: 'center', 
-            height: '100vh',
-            padding: '20px',
-            fontFamily: 'Avenir',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '70vh',
+                padding: '20px',
+                fontFamily: 'Avenir',
             }}>
                 <div style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    width: '40%',
+                    width: '50%',
                     height: '70vh',
                     justifyContent: 'space-between',
                 }}>
-                    <div id='chat-window' style={{
-                        border: '1px solid #ccc',
-                        padding: '20px',
-                        height: '80%',
-                        overflowY: 'scroll',
-                        boxSizing: 'border-box',
-                        marginBottom: '10px',
-                        borderRadius: '20px',
-                        backgroundColor: 'white',
-                        color: 'black'
-                    }}>
+                    <div 
+                        id='chat-window'
+                        ref={chatWindowRef}
+                        style={{
+                            border: '1px solid #ccc',
+                            padding: '20px',
+                            height: '80%',
+                            overflowY: 'scroll',
+                            boxSizing: 'border-box',
+                            marginBottom: '10px',
+                            borderRadius: '20px',
+                            backgroundColor: 'white',
+                            color: 'black'
+                        }}>
                         {messages.map((message, index) => (
                             <div key={index} style={{ textAlign: message.sender === 'You' ? 'right' : 'left' }}>
                                 <p><strong>{message.sender}:</strong> {message.text}</p>
@@ -79,11 +91,11 @@ function Chatbot() {
                                 borderRadius: '10px',
                             }}
                         />
-                        <button 
+                        <button
                             onClick={() => {
                                 send_input();
                                 add_input('');
-                            }} 
+                            }}
                             disabled={!user_input.trim()}
                             style={{ padding: '10px 20px', borderRadius: '10px', backgroundColor: 'white', border: '1px', borderRadius: '10px', }}>
                             <FontAwesomeIcon icon={faPaperPlane} size="lg" />
@@ -93,7 +105,7 @@ function Chatbot() {
             </div>
         </div>
     );
-    
+
 }
 
 export default Chatbot;
