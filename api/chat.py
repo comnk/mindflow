@@ -1,45 +1,26 @@
 from openai import OpenAI
 from dotenv import load_dotenv
-from flask import request
+from flask import request, Flask, jsonify
 import os
 
+# Load environment variables
 load_dotenv()
 
+# Initialize OpenAI and Flask
 OPENAI_KEY = os.getenv("OPENAI_KEY")
 client = OpenAI(api_key=OPENAI_KEY)
+app = Flask(__name__)
 
-welcome_message = "Hey, there! I'm JotBot––your journaling buddy!\n\n"
-prompt_request = "what is today\'s journaling prompt?"
+# Chatbot context
+chatbot_context = "You are an intelligent assistant that helps the user with journaling more purposefully. At the start of each session, you will provide a journaling prompt in the form of a question for the user to journal about. Don't keep asking if they're ready or not to begin journaling. As the user journals and enters their response(s), you acknowledge their answers and ask follow-up questions that prompt them to further improve the quality of their journaling (but dont change the original prompt completely during this). The goal is to educate the user as well so they learn the importance of mindfulness––therefore, in your discussions/prompts include some educational aspects. Also, don't be so quick to change the day's journaling prompt; only do that if the user suggests or seems to be done reflecting."
 
-exit_input = "exit"
-exit_message = "Happy journaling, and see you soon!"
-
-chatbot_context = "You are an intelligent assistant that helps the user with journaling more puposefully. At the start of each session, you will provide a new random prompt in the form of a question for the user to journal about. As the user journals and enters their response(s), you ask follow up questions to further improve the quality of their journaling. The goal is to educate the user as well so they learn the importance of mindfulness––therefore, in your discussions/prompts include some educational aspects."
+# global vars
+# welcome_message = "Hey, there! I'm JotBot––your journaling buddy! Are you ready to start journaling today?\n\n"
 
 def generate_response(user_input, messages):
     messages.append({"role": "user", "content": user_input})
-    chat = client.chat.completions.create(model="gpt-3.5-turbo", messages=messages)
-    response = chat.choices[0].message.content
-    return response
-
-# need to figure out if we want to break using timer as well or only "exit"
-# need a message somewhere that indicates how the user exits
-
-def chatbot():
-    user_response = request.json["user_input_jstr"]
-    print(user_response)
-    messages = [{"role": "system", "content": chatbot_context}]
-    prompt = generate_response(prompt_request, messages)
-    print(f"JotBot: {welcome_message}{prompt}\n")
-
-    while True:
-        user_input = input("User : ")
-        if user_input.lower() == exit_input:
-            return exit_message
-        elif user_input:
-            chatbot_reply = generate_response(user_input, messages)
-            print(f"\nJotBot: {chatbot_reply}\n")
-            messages.append({"role": "assistant", "content": chatbot_reply})
-
-if __name__ == "__main__":
-    chatbot()
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=messages)
+    chatbot_reply = response.choices[0].message.content.strip()
+    return chatbot_reply
