@@ -34,9 +34,6 @@ function Chatbot() {
     return (
         <div>
             <Navbar />
-            <Link to="/" className="title">
-                <h1>MindFlow</h1>
-            </Link>
             <div style={{
                 display: 'flex', 
                 justifyContent: 'center', 
