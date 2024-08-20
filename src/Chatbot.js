@@ -1,3 +1,4 @@
+import { json, Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
@@ -7,25 +8,26 @@ function Chatbot() {
     const [user_input, add_input] = useState('');
     
     const send_input = async () => {
-        console.log('Sending input...');
         if (user_input.trim()) {
-            const new_message = [...messages, {sender : 'You', text : user_input}];
+            const new_message = [... messages, {sender : 'You', text : user_input}];
             add_message(new_message)
 
-            const response = await fetch('http://127.0.0.1:8080/api/journal-chatbot/', {
+            const response = await fetch ('http://localhost:5000/api/journal-chatbot/', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({user_input_jstr: user_input})
             });
             const response_parse = await response.json();
             add_message([...new_message, {sender : 'JotBot', text : response_parse.message}])
-            add_input('');
-            console.log('Input cleared');
-        }
-    };
+            add_input('')
+    };}
 
     return (
-        <div style={{
+        <div>
+            <Link to="/" className="title">
+                <h1>MindFlow</h1>
+            </Link>
+            <div style={{
             display: 'flex', 
             justifyContent: 'center', 
             alignItems: 'center', 
@@ -48,7 +50,8 @@ function Chatbot() {
                         boxSizing: 'border-box',
                         marginBottom: '10px',
                         borderRadius: '20px',
-                        backgroundColor: 'white'
+                        backgroundColor: 'white',
+                        color: 'black'
                     }}>
                         {messages.map((message, index) => (
                             <div key={index} style={{ textAlign: message.sender === 'You' ? 'right' : 'left' }}>
@@ -77,13 +80,15 @@ function Chatbot() {
                         <button 
                             onClick={send_input} 
                             disabled={!user_input.trim()}
-                            style={{ padding: '10px 20px', borderRadius: '10px', backgroundColor: 'white', border: '1px', }}>
+                            style={{ padding: '10px 20px', borderRadius: '10px', backgroundColor: 'white', border: '1px', borderRadius: '10px', }}>
                             <FontAwesomeIcon icon={faPaperPlane} size="lg" />
                         </button>
                     </div>
                 </div>
             </div>
+        </div>
     );
+    
 }
 
 export default Chatbot;
