@@ -32,9 +32,6 @@ function Homepage() {
           <div className='content'>
           <Navbar />
           <div className='container container-box'>
-              <Link to="/" className="title">
-                <h1>MindFlow</h1>
-              </Link>
             <div id="quote-box">
               <div className="quote-content">
                 <h2 id="text">

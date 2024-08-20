@@ -30,9 +30,6 @@ function MindfulnessOption() {
             <Navbar />
             <div className="container">
                 <div className='content'>
-                <Link to="/" className="title">
-                    <h1>MindFlow</h1>
-                </Link>
                 <p className='option'>{explanation}</p>
                 <div className="buttons">
                     <Link to="/exercise">

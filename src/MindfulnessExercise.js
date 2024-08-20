@@ -19,7 +19,7 @@ function MindfulnessExercise() {
                 <div className="video-container">
                     <iframe title="meditation-video" width="600" height="480"  src={myVariable.video_url}/>  
                 </div>
-                <Link to="/option" className='buttons'>
+                <Link to="/option" className='buttons' style={{textDecoration: "none"}}>
                     <button>Go Back</button>
                 </Link>
             </div>
