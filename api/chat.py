@@ -1,5 +1,6 @@
 from openai import OpenAI
 from dotenv import load_dotenv
+from flask import request
 import os
 
 load_dotenv()
@@ -25,6 +26,8 @@ def generate_response(user_input, messages):
 # need a message somewhere that indicates how the user exits
 
 def chatbot():
+    user_response = request.json["user_input_jstr"]
+    print(user_response)
     messages = [{"role": "system", "content": chatbot_context}]
     prompt = generate_response(prompt_request, messages)
     print(f"JotBot: {welcome_message}{prompt}\n")
