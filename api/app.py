@@ -43,7 +43,7 @@ app.add_url_rule("/api/mindfulness-video/", view_func=mindfulness.get_meditation
 @app.route("/api/quote", methods=["GET"])
 def get_quote():
     try:
-        response = requests.get("https://zenquotes.io/api/today")
+        response = requests.get("https://zenquotes.io/api/random")
         response.raise_for_status()
         data = response.json()
         return jsonify(data)
