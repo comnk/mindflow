@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 import requests
 from chat import chatbot_context, generate_response  # Directly import the chatbot function
@@ -6,6 +7,10 @@ import mindfulness
 
 app = Flask(__name__)
 CORS(app)
+
+# user authentication
+
+
 
 # chatbot
 @app.route("/api/journal-chatbot/", methods=['POST'])
