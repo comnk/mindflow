@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { MyContext } from './MyContext';
 import Navbar from './components/Nav/Navbar';
 import './MindfulnessOption.css';
@@ -13,21 +13,26 @@ const options = {
 function MindfulnessOption() {
     const [myVariable, setMyVariable] = useContext(MyContext);
     const [explanation, setExplanation] = useState("Mindfulness Exercises!");
+    const navigate = useNavigate();
+
+    // Check if the user is authenticated, redirect if not
+    useEffect(() => {
+        if (!myVariable.isAuthenticated) {
+            navigate("/login");
+        }
+    }, [myVariable.isAuthenticated, navigate]);
 
     const handleOutput = async (e) => {
-        const token = localStorage.getItem("token"); // Get the token from localStorage
-
         const response = await fetch('https://hackvortex4-project.onrender.com/api/mindfulness-level/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`, // Include the token in the request header
             },
             body: JSON.stringify({ level: e.target.value }),
         });
 
         const response_parse = await response.json();
-        setMyVariable(response_parse.url); // Update the context with the fetched video URL
+        setMyVariable({ ...myVariable, video_url: response_parse.url }); // Update context with the video URL
     };
 
     return (

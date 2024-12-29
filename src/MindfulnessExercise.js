@@ -5,17 +5,18 @@ import './MindfulnessExercise.css';
 
 function MindfulnessExercise() {
     const [myVariable] = useContext(MyContext);
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Hook to handle redirection
 
+    // Check if the user is authenticated
     useEffect(() => {
-        // Check if myVariable (i.e., authentication state) is available
-        if (!myVariable) {
-            navigate('/login'); // Redirect to login if not authenticated
+        if (!myVariable.isAuthenticated) {
+            // Redirect to the login page if not authenticated
+            navigate("/login");
         }
-    }, [myVariable, navigate]);
+    }, [myVariable.isAuthenticated, navigate]);
 
     if (!myVariable) {
-        return <p>Loading...</p>; // Wait until myVariable is available
+        return <p>Loading...</p>; // or some other loading state
     }
 
     return (
@@ -25,7 +26,12 @@ function MindfulnessExercise() {
             </Link>
             <div className="container">
                 <div className="video-container">
-                    <iframe title="meditation-video" width="600" height="480" src={myVariable.video_url} />
+                    <iframe
+                        title="meditation-video"
+                        width="600"
+                        height="480"
+                        src={myVariable.video_url}
+                    />
                 </div>
                 <Link to="/option" className="buttons" style={{ textDecoration: "none" }}>
                     <button>Go Back</button>
