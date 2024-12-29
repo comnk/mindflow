@@ -6,21 +6,23 @@ import random
 
 load_dotenv()
 
-YOUTUBE_KEY=os.getenv("YOUTUBE_KEY")
+YOUTUBE_KEY = os.getenv("YOUTUBE_KEY")
 youtube = build('youtube', 'v3', developerKey=YOUTUBE_KEY)
 
 def get_level():
-    level = request.json["level"]
+    level = request.json.get("level")
     duration = ""
 
-    if (level == "beginner"):
-        duration="short"
-    elif (level == "moderate"):
-        duration="medium"
-    else:
-        duration="long"
+    if level == "beginner":
+        duration = "short"
+    elif level == "moderate":
+        duration = "medium"
+    elif level == "advanced":
+        duration = "long"
 
-    return {"url": get_meditation_video(videoDuration=duration)}
+    # Directly pass the video URL in the response
+    video_url = get_meditation_video(videoDuration=duration)
+    return {"url": video_url}
 
 def get_meditation_video(videoDuration):
     request = youtube.search().list(
@@ -37,6 +39,6 @@ def get_meditation_video(videoDuration):
     if response["items"]:
         random_video = random.choice(response["items"])
         video_url = f"https://www.youtube.com/embed/{random_video['id']['videoId']}"
-        return {"video_url": video_url}
+        return video_url
     else:
-        return {"video_url": "No video found"}
+        return "No video found"
