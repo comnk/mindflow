@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
-from flask_bcrypt import Bcrypt
+from flask_jwt_extended import JWTManager, jwt_required
+from auth import auth
 from flask_cors import CORS
 import requests
 from chat import chatbot_context, generate_response  # Directly import the chatbot function
@@ -9,11 +10,21 @@ app = Flask(__name__)
 CORS(app)
 
 # user authentication
+app.config["JWT_SECRET_KEY"] = "your_secret_key"  # Change to a strong secret key in production
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 3600  # Token expiration time (in seconds)
+jwt = JWTManager(app)
 
+app.register_blueprint(auth, url_prefix="/auth")
 
+# Middleware to protect routes
+def jwt_protected_function(fn):
+    def wrapper(*args, **kwargs):
+        return jwt_required()(fn)(*args, **kwargs)
+    return wrapper
 
 # chatbot
 @app.route("/api/journal-chatbot/", methods=['POST'])
+@jwt_required()
 def chatbot():
     try:
         # Get the user input from the request
@@ -41,8 +52,15 @@ def chatbot():
         return jsonify({"message": "An error occurred on the server."}), 500
 
 # mindfulness
-app.add_url_rule("/api/mindfulness-level/", view_func=mindfulness.get_level, methods=['GET', 'POST'])
-app.add_url_rule("/api/mindfulness-video/", view_func=mindfulness.get_meditation_video, methods=['GET', 'POST'])
+app.add_url_rule(
+    "/api/mindfulness-level/",
+    "mindfulness_level",
+    jwt_protected_function(mindfulness.get_level), methods=['GET', 'POST'])
+
+app.add_url_rule(
+    "/api/mindfulness-video/",
+    "mindfulness_video",
+    jwt_protected_function(mindfulness.get_meditation_video), methods=['GET', 'POST'])
 
 # zen quotes
 @app.route("/api/quote", methods=["GET"])

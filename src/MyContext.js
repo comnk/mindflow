@@ -6,7 +6,7 @@ export const MyProvider = ({ children }) => {
   const [myVariable, setMyVariable] = useState('Initial Value');
 
   return (
-    <MyContext.Provider value={ [myVariable, setMyVariable] }>
+    <MyContext.Provider value={[myVariable, setMyVariable]}>
       {children}
     </MyContext.Provider>
   );
