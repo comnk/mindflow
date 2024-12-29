@@ -1,14 +1,18 @@
-from flask import g
 from pymongo import MongoClient
+from dotenv import load_dotenv
 import os
 
-def get_db():
-    if "db" not in g:
-        client = MongoClient(os.getenv("MONGODB_URI"))
-        g.db = client["mindflow"]
-    return g.db
+load_dotenv()
+MONGODB_URI = os.environ['MONGODB_URI']
 
-def close_db(error=None):
-    db = g.pop("db", None)
-    if db is not None:
-        db.client.close()
+client = MongoClient(os.getenv("MONGODB_URI"), serverSelectionTimeoutMS=50000)
+
+def get_db():
+    return client["mindflow"]
+
+
+# from pymongo import MongoClient
+
+# def get_db():
+#     client = MongoClient("mongodb://localhost:27017", serverSelectionTimeoutMS=5000)
+#     return client["mindflow"]
