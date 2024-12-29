@@ -22,7 +22,7 @@ function Login() {
       const data = await response.json();
       if (response.ok) {
         setMyVariable({ isAuthenticated: true, token: data.token });
-        navigate('/');
+        navigate('/'); // Redirect to the home page
       } else {
         setError(data.error || 'Invalid credentials. Please try again.');
       }
