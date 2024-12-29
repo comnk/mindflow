@@ -5,11 +5,12 @@ from database import get_db
 
 bcrypt = Bcrypt()
 auth = Blueprint("auth", __name__)
-db = get_db()
-users = db["mindflow_users"]
 
 @auth.route("/api/register", methods=["POST"])
 def register():
+    db = get_db()
+    users = db["mindflow_users"]
+
     data = request.get_json()
     name = data.get("name")
     email = data.get("email")
@@ -25,6 +26,9 @@ def register():
 
 @auth.route("/api/login", methods=["POST"])
 def login():
+   db = get_db()
+   users = db["mindflow_users"]
+
    data = request.get_json()
    email = data.get("email")
    password = data.get("password")
