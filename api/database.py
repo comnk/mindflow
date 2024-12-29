@@ -5,12 +5,8 @@ import os
 load_dotenv()
 MONGODB_URI = os.environ['MONGODB_URI']
 
-client = None
-
 def get_db():
-    global client
-    if not client:
-        client = MongoClient(MONGODB_URI)
+    client = MongoClient(MONGODB_URI, serverSelectionTimeoutMS=7500)
     return client["mindflow"]
 
 # from pymongo import MongoClient
