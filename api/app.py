@@ -14,7 +14,7 @@ app.config["JWT_SECRET_KEY"] = "your_secret_key"  # Change to a strong secret ke
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 3600  # Token expiration time (in seconds)
 jwt = JWTManager(app)
 
-app.register_blueprint(auth, url_prefix="/auth")
+app.register_blueprint(auth)
 
 # Middleware to protect routes
 def jwt_protected_function(fn):
