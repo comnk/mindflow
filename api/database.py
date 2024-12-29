@@ -8,4 +8,4 @@ MONGODB_URI = os.environ['MONGODB_URI']
 
 def get_db():
     client = MongoClient(MONGODB_URI)
-    mindflow_db = client["mindflow"]
+    return client["mindflow"]
