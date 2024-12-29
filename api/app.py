@@ -24,7 +24,6 @@ def jwt_protected_function(fn):
 
 # chatbot
 @app.route("/api/journal-chatbot/", methods=['POST'])
-@jwt_required()
 def chatbot():
     try:
         # Get the user input from the request
