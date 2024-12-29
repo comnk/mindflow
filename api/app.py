@@ -3,6 +3,7 @@ from flask_jwt_extended import JWTManager, jwt_required
 from auth import auth
 from flask_cors import CORS
 import requests
+from database import close_db
 from chat import chatbot_context, generate_response  # Directly import the chatbot function
 import mindfulness
 
@@ -21,6 +22,10 @@ def jwt_protected_function(fn):
     def wrapper(*args, **kwargs):
         return jwt_required()(fn)(*args, **kwargs)
     return wrapper
+
+@app.teardown_appcontext
+def teardown_db(exception):
+    close_db()
 
 # chatbot
 @app.route("/api/journal-chatbot/", methods=['POST'])
