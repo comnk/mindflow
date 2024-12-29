@@ -8,7 +8,7 @@ auth = Blueprint("auth", __name__)
 db = get_db()
 users = db["mindflow_users"]
 
-@auth.route("/register", methods=["POST"])
+@auth.route("/api/register", methods=["POST"])
 def register():
     data = request.get_json()
     name = data.get("name")
@@ -23,7 +23,7 @@ def register():
 
     return jsonify({"message": "User registered successfully"}), 201
 
-@auth.route("/login", methods=["POST"])
+@auth.route("/api/login", methods=["POST"])
 def login():
    data = request.get_json()
    email = data.get("email")
