@@ -1,13 +1,21 @@
-import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
 import { MyContext } from './MyContext';
 import './MindfulnessExercise.css';
 
 function MindfulnessExercise() {
     const [myVariable] = useContext(MyContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // Check if myVariable (i.e., authentication state) is available
+        if (!myVariable) {
+            navigate('/login'); // Redirect to login if not authenticated
+        }
+    }, [myVariable, navigate]);
 
     if (!myVariable) {
-        return <p>Loading...</p>; // or some other loading state
+        return <p>Loading...</p>; // Wait until myVariable is available
     }
 
     return (
