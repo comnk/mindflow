@@ -53,13 +53,11 @@ def chatbot():
 # mindfulness
 app.add_url_rule(
     "/api/mindfulness-level/",
-    "mindfulness_level",
-    jwt_protected_function(mindfulness.get_level), methods=['GET', 'POST'])
+    view_func=mindfulness.get_level, methods=['GET', 'POST'])
 
 app.add_url_rule(
     "/api/mindfulness-video/",
-    "mindfulness_video",
-    jwt_protected_function(mindfulness.get_meditation_video), methods=['GET', 'POST'])
+    view_func=mindfulness.get_meditation_video, methods=['GET', 'POST'])
 
 # zen quotes
 @app.route("/api/quote", methods=["GET"])
