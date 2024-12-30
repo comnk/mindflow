@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import { MyContext } from "./MyContext";
+import React, { useState, useEffect } from "react";
 
 function Profile() {
     const [profile, setProfile] = useState({ name: "", email: "" });
@@ -12,95 +11,111 @@ function Profile() {
 
     useEffect(() => {
         const fetchProfile = async () => {
-          const token = localStorage.getItem('token');
-    
-          if (!token) {
-            setMessage('No token found. Please log in.');
-            return;
-          }
-    
-          try {
-            const response = await fetch('https://hackvortex4-project.onrender.com/api/profile', {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            });
-    
-            if (!response.ok) {
-              // Check for unauthorized error or others
-              const errorData = await response.json();
-              setMessage(`Error: ${errorData.msg || 'Failed to fetch profile.'}`);
-              return;
+            const email = localStorage.getItem("email");
+
+            if (!email) {
+                setMessage("No email found. Please log in.");
+                return;
             }
-    
-            const data = await response.json();
-            setProfile({ name: data.name, email: data.email });
-          } catch (error) {
-            setMessage('Error fetching profile: ' + error.message);
-          }
+
+            try {
+                const response = await fetch("https://hackvortex4-project.onrender.com/api/profile", {
+                    method: "POST", // Changed from GET to POST
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ email }),
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    setMessage(`Error: ${errorData.msg || "Failed to fetch profile."}`);
+                    return;
+                }
+
+                const data = await response.json();
+                setProfile({ name: data.name, email: data.email });
+            } catch (error) {
+                setMessage("Error fetching profile: " + error.message);
+            }
         };
-    
+
         fetchProfile();
-      }, []);
+    }, []);
 
     const handleUpdateName = async () => {
-        const token = localStorage.getItem("token");
-        const response = await fetch("https://hackvortex4-project.onrender.com/api/profile/update-name", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ name: name }),
-        });
-    
-        if (response.ok) {
-          setProfile((prev) => ({ ...prev, name: name }));
-          setMessage("Name updated successfully.");
-        } else {
-          setMessage("Failed to update name.");
+        const email = localStorage.getItem("email");
+
+        try {
+            const response = await fetch("https://hackvortex4-project.onrender.com/api/profile/update-name", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, name }),
+            });
+
+            if (response.ok) {
+                setProfile((prev) => ({ ...prev, name }));
+                setMessage("Name updated successfully.");
+            } else {
+                const errorData = await response.json();
+                setMessage(errorData.msg || "Failed to update name.");
+            }
+        } catch (error) {
+            setMessage("Error updating name: " + error.message);
         }
     };
-    
+
     const handleUpdateEmail = async () => {
-        const token = localStorage.getItem("token");
-        const response = await fetch("https://hackvortex4-project.onrender.com/api/profile/update-email", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ email: email }),
-        });
-    
-        if (response.ok) {
-          setProfile((prev) => ({ ...prev, email: email }));
-          setMessage("Email updated successfully.");
-        } else {
-          setMessage("Failed to update email.");
+        const currentEmail = localStorage.getItem("email");
+
+        try {
+            const response = await fetch("https://hackvortex4-project.onrender.com/api/profile/update-email", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ currentEmail, newEmail: email }),
+            });
+
+            if (response.ok) {
+                setProfile((prev) => ({ ...prev, email }));
+                setMessage("Email updated successfully.");
+            } else {
+                const errorData = await response.json();
+                setMessage(errorData.msg || "Failed to update email.");
+            }
+        } catch (error) {
+            setMessage("Error updating email: " + error.message);
         }
     };
-    
+
     const handleUpdatePassword = async () => {
         if (newPassword !== confirmPassword) {
-          setMessage("Passwords do not match.");
-          return;
+            setMessage("Passwords do not match.");
+            return;
         }
-    
-        const token = localStorage.getItem("token");
-        const response = await fetch("https://hackvortex4-project.onrender.com/api/profile/update-password", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ currentPassword, newPassword }),
-        });
-    
-        if (response.ok) {
-          setMessage("Password updated successfully.");
-        } else {
-          setMessage("Failed to update password.");
+
+        const email = localStorage.getItem("email");
+
+        try {
+            const response = await fetch("https://hackvortex4-project.onrender.com/api/profile/update-password", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, currentPassword, newPassword }),
+            });
+
+            if (response.ok) {
+                setMessage("Password updated successfully.");
+            } else {
+                const errorData = await response.json();
+                setMessage(errorData.msg || "Failed to update password.");
+            }
+        } catch (error) {
+            setMessage("Error updating password: " + error.message);
         }
     };
 
@@ -112,10 +127,10 @@ function Profile() {
                 <h3>Update Name</h3>
                 <p>Current Name: {profile.name}</p>
                 <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="New Name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="New Name"
                 />
                 <button onClick={handleUpdateName}>Update Name</button>
             </div>
@@ -123,37 +138,37 @@ function Profile() {
                 <h3>Update Email</h3>
                 <p>Current Email: {profile.email}</p>
                 <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="New Email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="New Email"
                 />
                 <button onClick={handleUpdateEmail}>Update Email</button>
             </div>
             <div>
                 <h3>Update Password</h3>
                 <input
-                type="password"
-                value={currentPassword}
-                onChange={(e) => setCurrentPassword(e.target.value)}
-                placeholder="Current Password"
+                    type="password"
+                    value={currentPassword}
+                    onChange={(e) => setCurrentPassword(e.target.value)}
+                    placeholder="Current Password"
                 />
                 <input
-                type="password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                placeholder="New Password"
+                    type="password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    placeholder="New Password"
                 />
                 <input
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Confirm New Password"
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="Confirm New Password"
                 />
                 <button onClick={handleUpdatePassword}>Update Password</button>
             </div>
         </div>
-    )
+    );
 }
 
 export default Profile;
