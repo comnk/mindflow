@@ -10,6 +10,7 @@ db = get_db()
 users_collection = db["mindflow_users"]
 
 @profile_bp.route('/profile', methods=['GET'])
+@jwt_required()
 def get_profile():
     current_user_email = get_jwt_identity()
     user = users_collection.find_one({"email": current_user_email}, {"_id": 0, "name": 1, "email": 1})
@@ -19,6 +20,7 @@ def get_profile():
     return jsonify({"msg": "User not found"}), 404
 
 @profile_bp.route('/profile/update-name', methods=['PUT'])
+@jwt_required()
 def update_name():
     current_user_email = get_jwt_identity()
     new_name = request.json.get("name")
@@ -31,6 +33,7 @@ def update_name():
     return jsonify({"msg": "Invalid name"}), 400
 
 @profile_bp.route('/profile/update-email', methods=['PUT'])
+@jwt_required()
 def update_email():
     current_user_email = get_jwt_identity()
     new_email = request.json.get("email")
@@ -46,6 +49,7 @@ def update_email():
     return jsonify({"msg": "Invalid email"}), 400
 
 @profile_bp.route('/profile/update-password', methods=['PUT'])
+@jwt_required()
 def update_password():
     current_user_email = get_jwt_identity()
     current_password = request.json.get("currentPassword")
