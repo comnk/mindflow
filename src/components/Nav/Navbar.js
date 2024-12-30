@@ -6,20 +6,15 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
-  const [myVariable, , logOut] = useContext(MyContext); // Get the logOut function
+  const [myVariable, , logOut] = useContext(MyContext); // Get logOut function
 
   const handleClick = () => setClick(!click);
   const closeMenu = () => setClick(false);
 
   const handleSignOut = () => {
-    logOut(); // Update the context to log out
-    navigate('/login'); // Redirect to login page
-  };
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
+    logOut(); // Logout action
+    navigate('/'); // Redirect to login page
   };
 
   return (
@@ -33,10 +28,9 @@ const Navbar = () => {
         <div className="hamburger" onClick={handleClick}>
           {click ? <FaTimes size={30} style={{ color: '#ffffff' }} /> : <FaBars size={30} style={{ color: '#ffffff' }} />}
         </div>
-        <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+        <ul className={`nav-menu ${click ? 'active' : ''} ${!myVariable.isAuthenticated ? 'unauthenticated' : ''}`}>
           {myVariable.isAuthenticated ? (
-            // Render authenticated menu
-            <div>
+            <>
               <li className="nav-item">
                 <Link to="/homepage" onClick={closeMenu}>
                   Home
@@ -53,10 +47,10 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item dropdown">
-                <button className="dropdown-btn" onClick={toggleDropdown}>
+                <button className="dropdown-btn" onClick={() => setClick(!click)}>
                   Profile
                 </button>
-                <ul className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
+                <ul className={`dropdown-menu ${click ? 'show' : ''}`}>
                   <li>
                     <Link to="/profile" onClick={closeMenu}>
                       View Profile
@@ -76,14 +70,15 @@ const Navbar = () => {
                   </li>
                 </ul>
               </li>
-            </div>
+            </>
           ) : (
-            // Render Log In button if not authenticated
-            <li className="nav-item">
-              <Link to="/login" className="login-btn" onClick={closeMenu}>
-                Log In
-              </Link>
-            </li>
+            <>
+              <li className="nav-item">
+                <Link to="/login" className="login-btn" onClick={closeMenu}>
+                  Log In
+                </Link>
+              </li>
+            </>
           )}
         </ul>
       </nav>

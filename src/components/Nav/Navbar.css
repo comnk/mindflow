@@ -164,17 +164,48 @@
     }
 }
 
+/* Default styles for the navbar */
+.header .nav-menu {
+    display: flex;
+    flex-direction: row; /* Ensure horizontal layout by default */
+    justify-content: flex-end;
+    align-items: center;
+}
 
+/* Nav menu for unauthenticated users (vertical layout) */
+.header .nav-menu.unauthenticated {
+    flex-direction: column; /* Change to vertical layout for unauthenticated */
+    align-items: center;
+}
 
+/* Hamburger and dropdown for mobile screens */
+@media screen and (max-width: 940px) {
+    .hamburger {
+        display: block;
+    }
 
+    .nav-menu {
+        flex-direction: column;
+        position: fixed;
+        left: -110%;
+        top: 41px;
+        width: 100%;
+        height: 90vh;
+        background-color: #0b7077;
+        z-index: 999;
+        text-align: center;
+        transition: 0.3s;
+    }
 
+    .nav-menu.active {
+        left: 0;
+    }
 
+    .nav-item {
+        margin: 1.5rem 0;
+    }
 
-
-
-
-
-
-
-
-
+    .nav-menu.unauthenticated {
+        flex-direction: column; /* Retain vertical layout for unauthenticated users */
+    }
+}
