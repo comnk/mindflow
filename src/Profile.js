@@ -69,7 +69,7 @@ function Profile() {
         }
     
         const token = localStorage.getItem("token");
-        const response = await fetch("https://your-api-url.com/api/profile/update-password", {
+        const response = await fetch("https://hackvortex4-project.onrender.com/api/profile/update-password", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
