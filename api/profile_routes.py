@@ -4,11 +4,10 @@ from database import get_db
 
 profile_bp = Blueprint('profile', __name__)
 
-db = get_db()
-users_collection = db["mindflow_users"]
-
 @profile_bp.route('/api/profile', methods=['POST'])
 def get_profile():
+    db = get_db()
+    users_collection = db["mindflow_users"]
     data = request.get_json()
     email = data.get("email")
 
@@ -23,6 +22,8 @@ def get_profile():
 
 @profile_bp.route('/api/profile/update-name', methods=['PUT'])
 def update_name():
+    db = get_db()
+    users_collection = db["mindflow_users"]
     data = request.get_json()
     email = data.get("email")
     new_name = data.get("name")
@@ -42,6 +43,8 @@ def update_name():
 
 @profile_bp.route('/api/profile/update-email', methods=['PUT'])
 def update_email():
+    db = get_db()
+    users_collection = db["mindflow_users"]
     data = request.get_json()
     current_email = data.get("currentEmail")
     new_email = data.get("newEmail")
@@ -64,6 +67,8 @@ def update_email():
 
 @profile_bp.route('/api/profile/update-password', methods=['PUT'])
 def update_password():
+    db = get_db()
+    users_collection = db["mindflow_users"]
     data = request.get_json()
     email = data.get("email")
     current_password = data.get("currentPassword")
