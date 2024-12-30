@@ -6,6 +6,7 @@ import MindfulnessOption from './MindfulnessOption';
 import MindfulnessExercise from './MindfulnessExercise';
 import Login from './Login';
 import Register from './Register';
+import Profile from "./Profile";
 import './App.css';
 import { MyProvider, MyContext } from './MyContext';
 
@@ -26,6 +27,7 @@ function App() {
             <Route path="/chatbot" element={<PrivateRoute element={<Chatbot />} />} />
             <Route path="/option" element={<PrivateRoute element={<MindfulnessOption />} />} />
             <Route path="/exercise" element={<PrivateRoute element={<MindfulnessExercise />} />} />
+            <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />;
           </Routes>
         </Router>
       </MyProvider>
