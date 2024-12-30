@@ -1,16 +1,19 @@
 import React, { useState, useContext } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { useNavigate, Link } from 'react-router-dom';  // Import Link from react-router-dom
+import { useNavigate, Link } from 'react-router-dom';
 import { MyContext } from '../../MyContext';
 import './Navbar.css';
 
 const Navbar = () => {
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState(false); // Toggle for mobile menu
+  const [dropdown, setDropdown] = useState(false); // Toggle for dropdown menu
   const navigate = useNavigate();
   const [myVariable, , logOut] = useContext(MyContext); // Get the logOut function
 
   const handleClick = () => setClick(!click);
   const closeMenu = () => setClick(false);
+
+  const toggleDropdown = () => setDropdown(!dropdown);
 
   const handleSignOut = () => {
     console.log("Signing out...");
@@ -38,12 +41,32 @@ const Navbar = () => {
           <li className="nav-item">
             <Link to="/option" onClick={closeMenu}>Mindfulness</Link>
           </li>
-          {/* Sign Out */}
-          {myVariable.isAuthenticated && (
-            <li className="nav-item">
-              <a href="#" onClick={(e) => { e.preventDefault(); closeMenu(); handleSignOut(); }}>Sign Out</a>
-            </li>
-          )}
+          <li className="nav-item dropdown">
+            <button className="dropdown-btn" onClick={toggleDropdown}>
+              Profile
+            </button>
+            {dropdown && (
+              <ul className="dropdown-menu">
+                <li>
+                  <Link to="/profile" onClick={() => setDropdown(false)}>
+                    Manage Profile
+                  </Link>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setDropdown(false);
+                      handleSignOut();
+                    }}
+                  >
+                    Sign Out
+                  </a>
+                </li>
+              </ul>
+            )}
+          </li>
         </ul>
       </nav>
     </div>

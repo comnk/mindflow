@@ -71,6 +71,60 @@
     display: none;
 }
 
+/* Ensure the navbar does not clip the dropdown */
+.navbar {
+    position: relative;
+    z-index: 100; /* Ensure dropdown is above other elements */
+    overflow: visible; /* Allow dropdown to be fully visible */
+  }
+  
+  /* Dropdown button */
+  .dropdown-btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  /* Dropdown menu */
+  .dropdown-menu {
+    position: absolute;
+    top: 40px; /* Space below the button */
+    left: 0;
+    background-color: #333; /* Dark background for dropdown */
+    border-radius: 5px;
+    list-style: none;
+    padding: 10px;
+    z-index: 1000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for visibility */
+  }
+  
+  /* Dropdown menu items */
+  .dropdown-menu li {
+    margin: 5px 0;
+  }
+  
+  .dropdown-menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px 10px;
+    display: block;
+  }
+  
+  .dropdown-menu li a:hover {
+    color: #00bcd4; /* Light blue hover effect */
+    background-color: #444; /* Add a background hover effect */
+  }
+  
+  /* Ensure dropdown container positions correctly */
+  .nav-item.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
 
 @media screen and (max-width:940px) {
     .header {
