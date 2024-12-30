@@ -12,36 +12,37 @@ function Profile() {
     useEffect(() => {
         const fetchProfile = async () => {
             const email = localStorage.getItem("email");
-
+            console.log("Email retrieved from localStorage:", email);
+    
             if (!email) {
-                setMessage("No email found. Please log in.");
+                console.log("No email found. Please log in");
                 return;
             }
-
+    
             try {
                 const response = await fetch("https://hackvortex4-project.onrender.com/api/profile", {
-                    method: "POST", // Changed from GET to POST
+                    method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({ email }),
                 });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    setMessage(`Error: ${errorData.msg || "Failed to fetch profile."}`);
-                    return;
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    setProfile(data); // Update profile state
+                    console.log("Profile data:", data);
+                } else {
+                    const error = await response.json();
+                    console.error("Error fetching profile:", error.msg);
                 }
-
-                const data = await response.json();
-                setProfile({ name: data.name, email: data.email });
-            } catch (error) {
-                setMessage("Error fetching profile: " + error.message);
+            } catch (err) {
+                console.error("Network error:", err);
             }
         };
-
+    
         fetchProfile();
-    }, []);
+    }, []);    
 
     const handleUpdateName = async () => {
         const email = localStorage.getItem("email");
