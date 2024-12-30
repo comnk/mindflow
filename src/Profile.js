@@ -12,17 +12,36 @@ function Profile() {
 
     useEffect(() => {
         const fetchProfile = async () => {
-            const token = localStorage.getItem("token");
-            const response = await fetch("https://hackvortex4-project.onrender.com/api/profile", {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              });
-              const data = await response.json();
-              setProfile({ name: data.name, email: data.email });
+          const token = localStorage.getItem('token');
+    
+          if (!token) {
+            setMessage('No token found. Please log in.');
+            return;
+          }
+    
+          try {
+            const response = await fetch('https://hackvortex4-project.onrender.com/api/profile', {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+    
+            if (!response.ok) {
+              // Check for unauthorized error or others
+              const errorData = await response.json();
+              setMessage(`Error: ${errorData.msg || 'Failed to fetch profile.'}`);
+              return;
+            }
+    
+            const data = await response.json();
+            setProfile({ name: data.name, email: data.email });
+          } catch (error) {
+            setMessage('Error fetching profile: ' + error.message);
+          }
         };
+    
         fetchProfile();
-    }, []);
+      }, []);
 
     const handleUpdateName = async () => {
         const token = localStorage.getItem("token");
