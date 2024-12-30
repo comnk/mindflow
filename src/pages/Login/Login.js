@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../../MyContext';
 import './Login.css';
+import Navbar from '../../components/Nav/Navbar';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -36,6 +37,7 @@ function Login() {
 
   return (
     <div className="login-container">
+      <Navbar />
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <input
