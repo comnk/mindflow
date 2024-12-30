@@ -25,7 +25,7 @@ function Login() {
   
         setMyVariable({ isAuthenticated: true, token: data.token });
   
-        navigate('/');
+        navigate('/homepage');
       } else {
         setError(data.error || 'Invalid credentials. Please try again.');
       }
