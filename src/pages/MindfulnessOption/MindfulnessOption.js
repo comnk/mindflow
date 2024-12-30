@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { MyContext } from './MyContext';
-import Navbar from './components/Nav/Navbar';
+import { MyContext } from '../../MyContext';
+import Navbar from '../../components/Nav/Navbar';
 import './MindfulnessOption.css';
 
 const options = {

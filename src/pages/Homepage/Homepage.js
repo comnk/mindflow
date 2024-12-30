@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from './components/Nav/Navbar';
+import Navbar from '../../components/Nav/Navbar';
 import{ FaQuoteLeft,  FaQuoteRight } from "react-icons/fa";
-import logo from './components/images/logo.png'
 import './Homepage.css'
 function Homepage() {
     const [quote, setQuote] = useState("");

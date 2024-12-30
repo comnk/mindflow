@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useContext } from 'react';
-import { MyContext } from './MyContext';  // Assuming you're using MyContext for auth
+import { MyContext } from '../../MyContext';  // Assuming you're using MyContext for auth
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-import Navbar from './components/Nav/Navbar';
+import Navbar from '../../components/Nav/Navbar';
 
 function Chatbot() {
     const [messages, add_message] = useState([]);

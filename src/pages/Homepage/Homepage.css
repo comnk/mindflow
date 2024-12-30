@@ -4,7 +4,7 @@
   right: 0;
   z-index: 1;
   display: block;
-  background-image: url("./components/images/bg.jpg"); 
+  background-image: url("../../components/images/bg.jpg"); 
   background-color: #cccccc; 
   height: 100vh; 
   background-position: center;

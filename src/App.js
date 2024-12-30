@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useContext } from 'react';
-import Chatbot from './Chatbot';
-import Homepage from './Homepage';
-import MindfulnessOption from './MindfulnessOption';
-import MindfulnessExercise from './MindfulnessExercise';
-import Login from './Login';
-import Register from './Register';
-import Profile from "./Profile";
+import Chatbot from './pages/Chatbot/Chatbot';
+import Homepage from './pages/Homepage/Homepage';
+import MindfulnessOption from './pages/MindfulnessOption/MindfulnessOption';
+import MindfulnessExercise from './pages/MindfulnessExercise/MindfulnessExercise';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import Profile from "./pages/Profile/Profile";
 import './App.css';
 import { MyProvider, MyContext } from './MyContext';
 

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
-import { MyContext } from './MyContext';
+import { MyContext } from '../../MyContext';
 import './MindfulnessExercise.css';
 
 function MindfulnessExercise() {
