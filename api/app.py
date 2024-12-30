@@ -18,7 +18,7 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 3600  # Token expiration time (in secon
 jwt = JWTManager(app)
 
 app.register_blueprint(auth)
-app.register_blueprint(profile_bp, url_prefix="/api")
+app.register_blueprint(profile_bp)
 
 # Middleware to protect routes
 def jwt_protected_function(fn):
