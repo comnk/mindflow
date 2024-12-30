@@ -1,55 +1,64 @@
 import React, { useState, useContext } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Import Link from react-router-dom
 import { MyContext } from '../../MyContext';
 import './Navbar.css';
 
 const Navbar = () => {
-  const [click, setClick] = useState(false); // Toggle for mobile menu
-  const [dropdown, setDropdown] = useState(false); // Toggle for dropdown menu
+  const [click, setClick] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
   const [myVariable, , logOut] = useContext(MyContext); // Get the logOut function
 
   const handleClick = () => setClick(!click);
   const closeMenu = () => setClick(false);
 
-  const toggleDropdown = () => setDropdown(!dropdown);
-
   const handleSignOut = () => {
-    console.log("Signing out...");
     logOut(); // Update the context to log out
     navigate('/login'); // Redirect to login page
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
   };
 
   return (
     <div className="header">
       <nav className="navbar">
         <Link to="/" className="logo" onClick={closeMenu}>
-          <p><span className="m">M</span>ind<span className="m">F</span>low<span className="m">.</span></p>
+          <p>
+            <span className="m">M</span>ind<span className="m">F</span>low<span className="m">.</span>
+          </p>
         </Link>
         <div className="hamburger" onClick={handleClick}>
-          {click ? (<FaTimes size={30} style={{ color: '#ffffff' }} />)
-            : (<FaBars size={30} style={{ color: '#ffffff' }} />)}
+          {click ? <FaTimes size={30} style={{ color: '#ffffff' }} /> : <FaBars size={30} style={{ color: '#ffffff' }} />}
         </div>
-        <ul className={click ? "nav-menu active" : "nav-menu"}>
+        <ul className={click ? 'nav-menu active' : 'nav-menu'}>
           <li className="nav-item">
-            <Link to="/" onClick={closeMenu}>Home</Link>
+            <Link to="/" onClick={closeMenu}>
+              Home
+            </Link>
           </li>
           <li className="nav-item">
-            <Link to="/chatbot" onClick={closeMenu}>Journaling</Link>
+            <Link to="/chatbot" onClick={closeMenu}>
+              Journaling
+            </Link>
           </li>
           <li className="nav-item">
-            <Link to="/option" onClick={closeMenu}>Mindfulness</Link>
+            <Link to="/option" onClick={closeMenu}>
+              Mindfulness
+            </Link>
           </li>
-          <li className="nav-item dropdown">
-            <button className="dropdown-btn" onClick={toggleDropdown}>
-              Profile
-            </button>
-            {dropdown && (
-              <ul className="dropdown-menu">
+
+          {myVariable.isAuthenticated && (
+            <li className="nav-item dropdown">
+              <button className="dropdown-btn" onClick={toggleDropdown}>
+                Profile
+              </button>
+              <ul className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
                 <li>
-                  <Link to="/profile" onClick={() => setDropdown(false)}>
-                    Manage Profile
+                  <Link to="/profile" onClick={closeMenu}>
+                    View Profile
                   </Link>
                 </li>
                 <li>
@@ -57,7 +66,7 @@ const Navbar = () => {
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
-                      setDropdown(false);
+                      closeMenu();
                       handleSignOut();
                     }}
                   >
@@ -65,8 +74,8 @@ const Navbar = () => {
                   </a>
                 </li>
               </ul>
-            )}
-          </li>
+            </li>
+          )}
         </ul>
       </nav>
     </div>
