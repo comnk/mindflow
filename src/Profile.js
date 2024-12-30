@@ -12,7 +12,7 @@ function Profile() {
     useEffect(() => {
         const fetchProfile = async () => {
             const email = localStorage.getItem("email");
-            console.log("Email retrieved from localStorage:", email);
+            console.log("Fetching profile for:", email);
     
             if (!email) {
                 console.log("No email found. Please log in");
@@ -30,8 +30,8 @@ function Profile() {
     
                 if (response.ok) {
                     const data = await response.json();
-                    setProfile(data); // Update profile state
                     console.log("Profile data:", data);
+                    setProfile(data); // Update the profile state
                 } else {
                     const error = await response.json();
                     console.error("Error fetching profile:", error.msg);
@@ -42,7 +42,7 @@ function Profile() {
         };
     
         fetchProfile();
-    }, []);    
+    }, []);        
 
     const handleUpdateName = async () => {
         const email = localStorage.getItem("email");
