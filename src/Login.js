@@ -18,18 +18,21 @@ function Login() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-
+  
       const data = await response.json();
       if (response.ok) {
+        localStorage.setItem('email', email);
+  
         setMyVariable({ isAuthenticated: true, token: data.token });
-        navigate('/'); // Redirect to the home page
+  
+        navigate('/');
       } else {
         setError(data.error || 'Invalid credentials. Please try again.');
       }
     } catch (err) {
       setError('An error occurred. Please try again later.');
     }
-  };
+  };  
 
   return (
     <div className="login-container">
