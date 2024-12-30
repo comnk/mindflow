@@ -21,7 +21,7 @@ function MindfulnessExercise() {
 
     return (
         <div className="App-header">
-            <Link to="/" className="title">
+            <Link to="/homepage" className="title">
                 <h1 style={{ color: '#0b7077' }}>MindFlow</h1>
             </Link>
             <div className="container">

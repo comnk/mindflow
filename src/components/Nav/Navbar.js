@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { useNavigate, Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { useNavigate, Link } from 'react-router-dom';
 import { MyContext } from '../../MyContext';
 import './Navbar.css';
 
@@ -34,46 +34,55 @@ const Navbar = () => {
           {click ? <FaTimes size={30} style={{ color: '#ffffff' }} /> : <FaBars size={30} style={{ color: '#ffffff' }} />}
         </div>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-          <li className="nav-item">
-            <Link to="/" onClick={closeMenu}>
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/chatbot" onClick={closeMenu}>
-              Journaling
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/option" onClick={closeMenu}>
-              Mindfulness
-            </Link>
-          </li>
-
-          {myVariable.isAuthenticated && (
-            <li className="nav-item dropdown">
-              <button className="dropdown-btn" onClick={toggleDropdown}>
-                Profile
-              </button>
-              <ul className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
-                <li>
-                  <Link to="/profile" onClick={closeMenu}>
-                    View Profile
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      closeMenu();
-                      handleSignOut();
-                    }}
-                  >
-                    Sign Out
-                  </a>
-                </li>
-              </ul>
+          {myVariable.isAuthenticated ? (
+            // Render authenticated menu
+            <div>
+              <li className="nav-item">
+                <Link to="/homepage" onClick={closeMenu}>
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/chatbot" onClick={closeMenu}>
+                  Journaling
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/option" onClick={closeMenu}>
+                  Mindfulness
+                </Link>
+              </li>
+              <li className="nav-item dropdown">
+                <button className="dropdown-btn" onClick={toggleDropdown}>
+                  Profile
+                </button>
+                <ul className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
+                  <li>
+                    <Link to="/profile" onClick={closeMenu}>
+                      View Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        closeMenu();
+                        handleSignOut();
+                      }}
+                    >
+                      Sign Out
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </div>
+          ) : (
+            // Render Log In button if not authenticated
+            <li className="nav-item">
+              <Link to="/login" className="login-btn" onClick={closeMenu}>
+                Log In
+              </Link>
             </li>
           )}
         </ul>

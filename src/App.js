@@ -9,6 +9,7 @@ import Register from './pages/Register/Register';
 import Profile from "./pages/Profile/Profile";
 import './App.css';
 import { MyProvider, MyContext } from './MyContext';
+import LandingPage from './pages/LandingPage/LandingPage';
 
 function App() {
   const PrivateRoute = ({ element }) => {
@@ -21,9 +22,10 @@ function App() {
       <MyProvider>
         <Router>
           <Routes>
+            <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/" element={<PrivateRoute element={<Homepage />} />} />
+            <Route path="/homepage" element={<PrivateRoute element={<Homepage />} />} />
             <Route path="/chatbot" element={<PrivateRoute element={<Chatbot />} />} />
             <Route path="/option" element={<PrivateRoute element={<MindfulnessOption />} />} />
             <Route path="/exercise" element={<PrivateRoute element={<MindfulnessExercise />} />} />

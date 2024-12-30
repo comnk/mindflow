@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Navbar from '../../components/Nav/Navbar';
-import { Link } from "react-router-dom";
 
 function Profile() {
     const [profile, setProfile] = useState({ name: "", email: "" });
