@@ -20,11 +20,19 @@ const Navbar = () => {
   return (
     <div className="header">
       <nav className="navbar">
-        <Link to="/" className="logo" onClick={closeMenu}>
-          <p>
-            <span className="m">M</span>ind<span className="m">F</span>low<span className="m">.</span>
-          </p>
-        </Link>
+        {myVariable.isAuthenticated ? (
+          <Link to="/homepage" className="logo" onClick={closeMenu}>
+            <p>
+              <span className="m">M</span>ind<span className="m">F</span>low<span className="m">.</span>
+            </p>
+          </Link>
+        ): (
+          <Link to="/" className="logo" onClick={closeMenu}>
+            <p>
+              <span className="m">M</span>ind<span className="m">F</span>low<span className="m">.</span>
+            </p>
+          </Link>
+        )}
         <div className="hamburger" onClick={handleClick}>
           {click ? <FaTimes size={30} style={{ color: '#ffffff' }} /> : <FaBars size={30} style={{ color: '#ffffff' }} />}
         </div>
