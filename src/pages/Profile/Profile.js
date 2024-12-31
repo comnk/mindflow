@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from '../../components/Nav/Navbar';
+import "./Profile.css";
 
 function Profile() {
     const [profile, setProfile] = useState({ name: "", email: "" });
@@ -122,15 +123,15 @@ function Profile() {
     };
 
     return (
-        <div className="App-header">
+        <div>
             <Navbar />
-            <div className="container">
+            <div className="profile-container">
                 <div className="content">
                     <h1>Profile Management</h1>
                     <p style={{ color: "green" }}>{message}</p>
                     <div>
                         <h3>Update Name</h3>
-                        <p>Current Name: {profile.name}</p>
+                        <p><strong>Current Name:</strong> {profile.name}</p>
                         <input
                             type="text"
                             value={name}
@@ -141,7 +142,7 @@ function Profile() {
                     </div>
                     <div>
                         <h3>Update Email</h3>
-                        <p>Current Email: {profile.email}</p>
+                        <p><strong>Current Email:</strong> {profile.email}</p>
                         <input
                             type="email"
                             value={email}

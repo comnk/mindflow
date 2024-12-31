@@ -1,0 +1,90 @@
+.profile-container {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+.content h1 {
+    color: #0b7077;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.content p {
+    font-size: 14px;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.content div {
+    margin-bottom: 2rem;
+}
+
+.content h3 {
+    margin-bottom: 1rem;
+    color: #fd661f;
+}
+
+.content input {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0 1rem 0;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content input:focus {
+    border-color: #0b7077;
+    box-shadow: 0px 0px 5px rgba(11, 112, 119, 0.5);
+}
+
+.content button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #0b7077;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.content button:hover {
+    background-color: #fd661f;
+}
+
+.content .success-message {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.content .error-message {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .content h1 {
+        font-size: 1.5rem;
+    }
+
+    .content h3 {
+        font-size: 1.2rem;
+    }
+
+    .content button {
+        width: 100%;
+    }
+}
