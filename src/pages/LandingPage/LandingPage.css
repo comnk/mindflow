@@ -11,6 +11,10 @@
     font-weight: bold;
     color: #333;
 }
+
+.video-container {
+  margin-bottom: 2rem;
+}
   
   .landing-subtitle {
     font-size: 1.2rem;

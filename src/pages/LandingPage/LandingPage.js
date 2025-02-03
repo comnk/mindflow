@@ -30,6 +30,9 @@ function LandingPage() {
           />
         </div>
 
+        <div className="video-container">
+          <iframe width="600" height="480" src="https://www.youtube.com/embed/sYksDJUJg7M" title="Mindflow Demo" frameborder="0" />
+        </div>
         <Link to="/register" className="signup-button">Sign Up</Link>
       </div>
     </>
