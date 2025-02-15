@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# **Mindflow - Mental Health & Journaling Platform**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **Overview**
 
-## Available Scripts
+Mindflow is a full-stack web application designed to help users manage their mental well-being through guided journaling, personalized mood tracking, and mindfulness resources. It empowers users with tools for self-reflection, emotional awareness, and personal growth, making it a valuable companion for enhancing their mental health journey.
 
-In the project directory, you can run:
+The application offers a seamless experience by integrating a journaling chatbot, sentiment analysis, and a mood-tracking dashboard. It also includes a mindfulness feature that provides random YouTube meditation videos tailored to the user's experience level.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## **Features**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **User Authentication & Authorization**:
+  - Secure user registration and login with JWT authentication.
+  - Profile management (update name, email, and password).
 
-### `npm test`
+- **Journaling Chatbot**:
+  - An AI-driven journaling assistant to guide users through reflective writing.
+  - Chat history storage for reviewing past entries.
+  - Sentiment analysis for emotional insights on journal entries.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Mindfulness & Meditation**:
+  - Recommends random YouTube meditation videos based on the user's experience level (beginner, intermediate, or advanced).
+  - Encourages mindfulness practices for emotional regulation.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## **Tech Stack**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **Frontend:**
+- **React.js** - For building an interactive and responsive user interface.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **Backend:**
+- **Python** with **Flask** - For building RESTful APIs and server-side logic.
+- **MongoDB** with **PyMongo** - NoSQL database for storing user data, chat history, and mood entries.
+- **JWT Authentication** - For secure user login and session management.
 
-### `npm run eject`
+### **APIs Integrated:**
+- **OpenAI API** - For the journaling chatbot's conversational abilities.
+- **YouTube Data API** - For fetching random meditation videos.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## **Installation & Setup**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### **Prerequisites**
+Ensure you have the following installed:
+- **Python** (v3.8 or later)
+- **Node.js** (v14.x or later)
+- **MongoDB** (Local or cloud instance)
+- **npm** (Node Package Manager)
